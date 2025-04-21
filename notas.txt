@@ -1,4 +1,4 @@
-https://api.telegram.org/bot7490119561:AAGJmnLToplJQ3FamNGMU6RKVSnSqsQ5g9c/setWebhook?url=https://5459b69b-a4a1-4314-8815-2d63582f5780-00-5sfgeu0y0amu.janeway.replit.dev/bot.php
+https://api.telegram.org/bot7490119561:AAGJmnLToplJQ3FamNGMU6RKVSnSqsQ5g9c/setWebhook?url=https://e6234ccc-7b96-482a-af53-e4fa5af9f110-00-2dc2lwe9vw8nw.picard.replit.dev/bot.php
 
 https://api.telegram.org/bot7490119561:AAGJmnLToplJQ3FamNGMU6RKVSnSqsQ5g9c/setWebhook?url=aqui va la url que quieras ejemplo abajo
 
