@@ -1,0 +1,12 @@
+https://api.telegram.org/bot7490119561:AAGJmnLToplJQ3FamNGMU6RKVSnSqsQ5g9c/setWebhook?url=https://5459b69b-a4a1-4314-8815-2d63582f5780-00-5sfgeu0y0amu.janeway.replit.dev/bot.php
+
+https://api.telegram.org/bot7490119561:AAGJmnLToplJQ3FamNGMU6RKVSnSqsQ5g9c/setWebhook?url=aqui va la url que quieras ejemplo abajo
+
+https://5fc10b13-5ea7-42c5-9a14-beb10c232792-00-1mft4grhlptdh.spock.replit.dev/bot.php
+
+
+
+
+este verificador
+
+https://api.telegram.org/bot7490119561:AAGJmnLToplJQ3FamNGMU6RKVSnSqsQ5g9c/getWebhookInfo
